@@ -30,7 +30,7 @@ export default function Footer() {
           <div className={styles.col}>
             <h4>SERVICES</h4>
             <ul>
-              <li>Carpentering</li>
+              <li>Carpenter</li>
               <li>Electrical Services</li>
               <li>Plumbing</li>
               <li>False Ceiling Services</li>
