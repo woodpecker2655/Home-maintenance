@@ -1,0 +1,80 @@
+.header {
+  position: relative;
+  z-index: 50; /* ensure header stays above page content */
+  padding: 18px 20px;
+  background: transparent;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.brandText {
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* center rounded navigation pill */
+.pill {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border-radius: 999px;
+  padding: 12px 28px;
+  box-shadow: 0 2px 18px rgba(0,0,0,0.25);
+}
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+.navList a {
+  color: #fff;
+  opacity: 0.95;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* right side actions */
+.actions {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.iconBtn {
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* responsive */
+@media (max-width: 880px) {
+  .pill { padding: 10px 16px; left: 50%; transform: translateX(-50%); top: 10px; }
+  .navList { gap: 14px; font-size: 14px; }
+  .brandText { display: none; }
+}
