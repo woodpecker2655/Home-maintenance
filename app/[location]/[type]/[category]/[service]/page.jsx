@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 }
 
 export default async function ServicePage({ params }) {
-  const { location, type, category, service } = params;
+  const { location, type, category, service } = await params;
   const data = await fetchServiceBySlugs({ locationSlug: location, typeSlug: type, categorySlug: category, serviceSlug: service });
 
   const imgUrl = data?.image ? await urlForImage(data.image) : "";

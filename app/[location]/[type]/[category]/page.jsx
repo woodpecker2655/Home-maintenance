@@ -9,7 +9,7 @@ export async function generateStaticParams() {
 }
 
 export default async function CategoryPage({ params }) {
-  const { location, type, category } = params;
+  const { location, type, category } = await params;
   const services = await fetchServicesByLocationAndType({ locationSlug: location, typeSlug: type, categorySlug: category });
 
   return (
