@@ -10,6 +10,12 @@ export default {
       validation: (Rule) => Rule.required().min(2),
     },
     {
+      name: "image",
+      title: "Icon/Image",
+      type: "image",
+      options: { hotspot: true },
+    },
+    {
       name: "slug",
       title: "Slug",
       type: "slug",
@@ -18,6 +24,6 @@ export default {
     },
   ],
   preview: {
-    select: { title: "name", subtitle: "slug.current" },
+    select: { title: "name", subtitle: "slug.current", media: "image" },
   },
 };

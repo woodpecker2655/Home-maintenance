@@ -1,11 +1,15 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { fetchLocations, fetchTypes } from "../../lib/queries.js";
+import { useSelection } from "../context/SelectionContext.jsx";
+import { useRouter } from "next/navigation";
 
 export default function FilterPopup({ onApply }) {
   const [open, setOpen] = useState(true);
   const [locationSlug, setLocationSlug] = useState("");
   const [typeSlug, setTypeSlug] = useState("");
+  const { setSelection } = useSelection();
+  const router = useRouter();
 
   // Auto-open on mount
   useEffect(() => {
@@ -55,9 +59,12 @@ export default function FilterPopup({ onApply }) {
   }, [rows]);
 
   const applyFilter = () => {
-    if (typeof onApply === "function") {
-      onApply({ locationSlug, typeSlug });
+    if (!locationSlug || !typeSlug) {
+      return;
     }
+    setSelection({ locationSlug, typeSlug });
+    if (typeof onApply === "function") onApply({ locationSlug, typeSlug });
+    router.push(`/${locationSlug}/${typeSlug}`);
     setOpen(false);
   };
 
@@ -72,15 +79,6 @@ export default function FilterPopup({ onApply }) {
           <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl border border-gray-100">
             <div className="mb-6 flex items-center justify-between border-b pb-4">
               <h2 className="text-xl font-bold text-gray-900">Filter Services</h2>
-              <button
-                className="rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors"
-                aria-label="Close filter"
-                onClick={() => setOpen(false)}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
             </div>
 
             <div className="space-y-5">
@@ -141,8 +139,11 @@ export default function FilterPopup({ onApply }) {
                 </button>
                 <button
                   type="button"
-                  className="rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-bold text-white shadow-md hover:bg-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  className={`rounded-lg px-6 py-2.5 text-sm font-bold text-white shadow-md transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 ${
+                    locationSlug && typeSlug ? "bg-emerald-600 hover:bg-emerald-700" : "bg-gray-300 cursor-not-allowed"
+                  }`}
                   onClick={applyFilter}
+                  disabled={!locationSlug || !typeSlug}
                 >
                   Apply Filters
                 </button>

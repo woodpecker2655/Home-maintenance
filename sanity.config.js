@@ -3,23 +3,14 @@ import { deskTool } from "sanity/desk";
 import { schemaTypes } from "./sanity/schemas/index";
 import deskStructure from "./sanity/deskStructure";
 
-// Read env with client/server-friendly fallbacks
-const projectId =
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
-  process.env.SANITY_PROJECT_ID ||
-  "yourProjectId";
-const dataset =
-  process.env.NEXT_PUBLIC_SANITY_DATASET ||
-  process.env.SANITY_DATASET ||
-  "production";
-
 export default defineConfig({
   name: "default",
   title: "Home Maintenance CMS",
-  projectId,
-  dataset,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_PROJECT_ID || "yourProjectId",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_DATASET || "production",
   plugins: [
     deskTool({
+      name: "studio",
       structure: deskStructure,
     }),
   ],

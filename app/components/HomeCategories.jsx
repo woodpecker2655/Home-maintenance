@@ -1,11 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { urlForImage } from "../../lib/image.js";
 import { fetchCategoriesByLocationAndType } from "../../lib/queries.js";
+import { useSelection } from "../context/SelectionContext.jsx";
 
 export default function HomeCategories({ locationSlug, typeSlug }) {
+  const { selection } = useSelection();
+  locationSlug = locationSlug || selection.locationSlug;
+  typeSlug = typeSlug || selection.typeSlug;
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     async function loadFromSanity() {
@@ -25,6 +32,27 @@ export default function HomeCategories({ locationSlug, typeSlug }) {
     }
     loadFromSanity();
   }, [locationSlug, typeSlug]);
+
+  useEffect(() => {
+    let alive = true;
+    async function build() {
+      if (!categories.length) {
+        setCards([]);
+        return;
+      }
+      const out = await Promise.all(
+        categories.map(async (c) => {
+          const imgUrl = c.image ? await urlForImage(c.image) : "";
+          return { ...c, imgUrl };
+        })
+      );
+      if (alive) setCards(out);
+    }
+    build();
+    return () => {
+      alive = false;
+    };
+  }, [categories]);
 
   if (!locationSlug || !typeSlug) {
     return (
@@ -63,22 +91,19 @@ export default function HomeCategories({ locationSlug, typeSlug }) {
       </div>
       
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {categories.map((c) => (
+        {cards.map((c) => (
           <li key={c.slug}>
             <Link
               href={`/${locationSlug}/${typeSlug}/${c.slug}`}
               className="group block h-full bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-emerald-500 transition-all duration-300"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+              {c.imgUrl ? (
+                <div className="relative mb-4 w-full h-40 overflow-hidden rounded-lg">
+                  <Image src={c.imgUrl} alt={c.name} fill className="object-cover" />
                 </div>
-                <span className="text-emerald-600 group-hover:translate-x-1 transition-transform">
-                  &rarr;
-                </span>
-              </div>
+              ) : (
+                <div className="mb-4 w-full h-40 rounded-lg bg-emerald-50" />
+              )}
               <h3 className="text-lg font-bold text-gray-900 group-hover:text-emerald-700 mb-2">{c.name}</h3>
               <p className="text-sm text-gray-500">Explore professional {c.name.toLowerCase()} services in your area.</p>
             </Link>

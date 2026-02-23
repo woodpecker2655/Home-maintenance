@@ -8,7 +8,7 @@ export default function Header() {
         <header className={styles.header}>
             <div className={styles.inner}>
                 <Link href="/" className={styles.brand}>
-                    <Image src="/assets/main-logo.webp" alt="Wedding & Events Logo" width={250} height={58} priority />
+                    <Image src="/assets/logo-Home-maintenance.webp" alt="Home Maintenance Logo" width={250} height={58} priority />
                 </Link>
 
                 <nav className={styles.pill} aria-label="Main navigation">
