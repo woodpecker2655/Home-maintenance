@@ -4,7 +4,7 @@
 }
 
 .topSection {
-  padding-top: 8rem;
+  padding-top: 10rem;
   padding-bottom: 2rem;
   background: linear-gradient(180deg, #f8faf9 0%, #ffffff 100%);
 }
@@ -12,25 +12,22 @@
 .categoriesSection {
   max-width: 1280px;
   margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 5rem;
-  margin-top: -3rem;
+  padding: 0 2rem 6rem;
   position: relative;
   z-index: 70;
 }
 
 @media (min-width: 640px) {
   .categoriesSection {
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding: 0 2rem 8rem;
   }
 }
 
 .categoriesCard {
   background-color: #ffffff;
-  border-radius: 2rem;
+  border-radius: 2.5rem;
   padding: 3rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
   border: 1px solid #f0f0f0;
+  margin-top: -1.5rem; /* Slight overlap to keep them connected but clean */
 }

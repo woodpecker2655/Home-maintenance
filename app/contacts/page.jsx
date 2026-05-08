@@ -35,7 +35,7 @@ const contactDetails = [
 export default function Contacts() {
   return (
     <main className="min-h-screen bg-white font-sans">
-      <section className="pt-28 pb-20 bg-[#cee2d7]">
+      <section className="pt-32 sm:pt-40 pb-20 bg-[#cee2d7]">
         <div className="max-w-[1280px] mx-auto px-8 sm:px-20 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

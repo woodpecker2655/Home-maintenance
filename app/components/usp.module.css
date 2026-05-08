@@ -14,12 +14,6 @@
   align-items: center;
 }
 
-@media (min-width: 640px) {
-  .container {
-    padding: 0 5rem;
-  }
-}
-
 @media (min-width: 1024px) {
   .container {
     grid-template-columns: 1fr 1fr;

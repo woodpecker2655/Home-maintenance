@@ -19,12 +19,6 @@
   padding: 0 2rem;
 }
 
-@media (min-width: 640px) {
-  .container {
-    padding: 0 5rem;
-  }
-}
-
 .grid {
   background-color: #ffffff;
   padding: 1rem;
