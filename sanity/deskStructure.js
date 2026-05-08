@@ -12,6 +12,10 @@ export default (S) =>
       S.listItem().title("Services").child(
         S.documentTypeList("service").title("Services")   
       ),
+      S.divider(),
+      S.listItem().title("Blog Posts").child(
+        S.documentTypeList("blog").title("Blog Posts")
+      ),
     ]);
 
 // Hints:

@@ -1,0 +1,36 @@
+.main {
+  min-height: 100vh;
+  background-color: #fcfcfc;
+}
+
+.topSection {
+  padding-top: 8rem;
+  padding-bottom: 2rem;
+  background: linear-gradient(180deg, #f8faf9 0%, #ffffff 100%);
+}
+
+.categoriesSection {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 5rem;
+  margin-top: -3rem;
+  position: relative;
+  z-index: 70;
+}
+
+@media (min-width: 640px) {
+  .categoriesSection {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+.categoriesCard {
+  background-color: #ffffff;
+  border-radius: 2rem;
+  padding: 3rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f0f0f0;
+}

@@ -84,10 +84,10 @@ export default function Footer() {
             © Copyright 2025 Wood Peckey. All rights reserved
           </div>
           <div className={styles.social}>
-            <span className={styles.icon}>f</span>
-            <span className={styles.icon}>x</span>
-            <span className={styles.icon}>ig</span>
-            <span className={styles.icon}>in</span>
+            <span className={styles.icon}>FB</span>
+            <span className={styles.icon}>TW</span>
+            <span className={styles.icon}>IG</span>
+            <span className={styles.icon}>LI</span>
           </div>
         </div>
       </div>

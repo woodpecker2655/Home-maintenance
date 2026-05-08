@@ -1,80 +1,96 @@
 .header {
-  position: relative;
-  z-index: 50; /* ensure header stays above page content */
-  padding: 18px 20px;
-  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .inner {
   max-width: 1280px;
   margin: 0 auto;
+  padding: 1.25rem 2rem;
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
   position: relative;
 }
 
-/* brand */
+@media (min-width: 640px) {
+  .inner {
+    padding: 1.25rem 5rem;
+  }
+}
+
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
-  color: #fff;
-}
-.brandText {
-  font-weight: 600;
-  font-size: 14px;
-  color: #fff;
 }
 
-/* center rounded navigation pill */
 .pill {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 6px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(8px);
+  background: #f8faf9;
   border-radius: 999px;
-  padding: 12px 28px;
-  box-shadow: 0 2px 18px rgba(0,0,0,0.25);
+  padding: 0.5rem 1.5rem;
+  border: 1px solid rgba(89, 140, 118, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
+
 .navList {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 26px;
+  gap: 2rem;
   align-items: center;
-}
-.navList a {
-  color: #fff;
-  opacity: 0.95;
-  text-decoration: none;
-  font-size: 15px;
 }
 
-/* right side actions */
+.navList a {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navList a:hover {
+  color: var(--primary-green-dark);
+}
+
 .actions {
-  margin-left: auto;
   display: flex;
-  gap: 12px;
+  gap: 1rem;
   align-items: center;
 }
+
 .iconBtn {
-  background: rgba(255,255,255,0.12);
+  background: none;
   border: none;
-  color: #fff;
-  padding: 10px;
+  color: #333;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 999px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
 }
 
-/* responsive */
-@media (max-width: 880px) {
-  .pill { padding: 10px 16px; left: 50%; transform: translateX(-50%); top: 10px; }
-  .navList { gap: 14px; font-size: 14px; }
-  .brandText { display: none; }
+.iconBtn:hover {
+  background: var(--primary-green-light);
+  color: var(--primary-green-dark);
+}
+
+@media (max-width: 1024px) {
+  .pill {
+    display: none;
+  }
 }

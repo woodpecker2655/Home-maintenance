@@ -1,24 +1,36 @@
 "use client";
-import { useState } from "react";
 import FilterBar from "./FilterBar";
 import HomeCategories from "./HomeCategories";
+import Affiliations from "./Affiliations";
+import USPSection from "./USPSection";
+import Testimonials from "./Testimonials";
+import BookNowCTA from "./BookNowCTA";
+
+import styles from "./home.module.css";
+import { useSelection } from "../context/SelectionContext";
 
 export default function HomePageClient() {
-  const [selection, setSelection] = useState({ locationSlug: "", typeSlug: "" });
+  const { selection } = useSelection();
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <FilterBar />
+    <main className={styles.main}>
+      <div className={styles.topSection}>
+        <FilterBar />
+      </div>
 
-      <div id="categories-section" className="pt-20 max-w-[1280px] mx-auto px-8 sm:px-20 pb-20">
-        <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+      <div id="categories-section" className={styles.categoriesSection}>
+        <div className={styles.categoriesCard}>
           <HomeCategories
             locationSlug={selection.locationSlug}
             typeSlug={selection.typeSlug}
           />
         </div>
       </div>
+
+      <USPSection />
+      <Testimonials />
+      <BookNowCTA />
+      <Affiliations />
     </main>
   );
 }
-
