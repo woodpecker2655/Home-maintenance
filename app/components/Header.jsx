@@ -115,12 +115,6 @@ export default function Header() {
                                 )}
                             </div>
                         </li>
-
-                        <li>
-                            <Link href="/products" className={`${styles.navLink} ${pathname === '/products' ? styles.navLinkActive : ''}`}>
-                                Products
-                            </Link>
-                        </li>
                         <li>
                             <Link href="/blog" className={`${styles.navLink} ${pathname === '/blog' ? styles.navLinkActive : ''}`}>
                                 Blog

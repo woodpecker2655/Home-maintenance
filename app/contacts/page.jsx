@@ -56,6 +56,8 @@ export default function Contacts() {
         </div>
       </section>
 
+      {/* Map Section */}
+
       <section className="py-20">
         <div className="max-w-[1280px] mx-auto px-8 sm:px-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -72,7 +74,18 @@ export default function Contacts() {
                   {item.icon}
                 </div>
                 <h3 className="text-[#598c76] font-bold uppercase tracking-widest text-xs mb-3">{item.label}</h3>
-                <p className="text-xl font-bold text-[#000000] mb-2">{item.value}</p>
+                {item.link ? (
+                  <a 
+                    href={item.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-xl font-bold text-[#000000] mb-2 hover:text-[#598c76] transition-colors underline decoration-dotted decoration-[#598c76]/30 underline-offset-4"
+                  >
+                    {item.value}
+                  </a>
+                ) : (
+                  <p className="text-xl font-bold text-[#000000] mb-2">{item.value}</p>
+                )}
                 <span className="text-[#000000]/50 text-sm">{item.subtext}</span>
               </motion.div>
             ))}
@@ -157,7 +170,7 @@ export default function Contacts() {
               className="rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(89,140,118,0.1)] h-[350px] border-4 border-[#cee2d7]"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115846.1969472607!2d67.01815140321277!3d24.85721869879707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e0660293eb7%3A0xad6a506195e7d589!2sDHA%20Karachi!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.482933717026!2d67.01590879999999!3d24.813153099999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33d9116b6eb89%3A0xc59615e827640890!2swoodpeckey!5e0!3m2!1sen!2s!4v1778318413643!5m2!1sen!2s"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
